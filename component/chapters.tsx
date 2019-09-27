@@ -4,6 +4,11 @@ import { Form, Button, ListGroup } from "react-bootstrap";
 import styled from "styled-components";
 import { IChapter } from "../utils/interfaces";
 
+const dev = process.env.NODE_ENV !== "production";
+const host = dev
+  ? "http://localhost:8080"
+  : "https://itm-mna-yceffort.herokuapp.com/";
+
 const MainContainer = styled.div`
   width: 400px;
   height: 600px;
@@ -54,7 +59,7 @@ export default function Chapters() {
   const [random, setRandom] = useState(true);
 
   const fetchChapters = useMemo(async () => {
-    const response = await fetch("/api/chapters");
+    const response = await fetch(`${host}/api/chapters`);
     const result = await response.json();
     setChapters(result);
   }, []);
