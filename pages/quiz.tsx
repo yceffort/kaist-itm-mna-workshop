@@ -10,7 +10,7 @@ import fetch from "isomorphic-fetch";
 const dev = process.env.NODE_ENV !== "production";
 const host = dev
   ? "http://localhost:8080"
-  : "https://itm-mna-kaist.herokuapp.com/";
+  : "https://itm-mna-yceffort.herokuapp.com/";
 
 const HomeButtonContainer = styled(Row)`
   margin-top: 5px;
