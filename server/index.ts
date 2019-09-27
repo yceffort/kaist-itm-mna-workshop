@@ -6,7 +6,7 @@ import mount from "koa-mount";
 import humps from "humps";
 import proxy from "koa-proxies";
 
-const port = parseInt(process.env.PORT || "8080", 10);
+const port = parseInt(process.env.PORT || "80", 10);
 const dev = process.env.NODE_ENV !== "production";
 const jsonbox_id = "box_dca1183468cd353a9e03";
 
