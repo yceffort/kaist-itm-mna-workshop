@@ -31,7 +31,8 @@ export default function MultipleEssay({
       var i = a.length;
       if (i != b.length) return false;
       while (i--) {
-        if (a[i].toLowerCase() !== b[i].toLowerCase()) return false;
+        if ((a[i] || "").toLowerCase() !== (b[i] || "").toLowerCase())
+          return false;
       }
       return true;
     }

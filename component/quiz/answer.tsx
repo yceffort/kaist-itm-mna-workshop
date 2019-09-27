@@ -68,8 +68,8 @@ export default function Answer({
               {typeof answer === "string" && <Card.Text>{answer}</Card.Text>}
               {typeof answer === "object" &&
                 Array.isArray(answer) &&
-                answer.map((a: string) => {
-                  return <Card.Text key={a}>{a}</Card.Text>;
+                answer.map((a: string, index: number) => {
+                  return <Card.Text key={index}>{a}</Card.Text>;
                 })}
             </Card.Body>
           )}
