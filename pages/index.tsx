@@ -1,13 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
+// import { Container, Row, Col, Button } from "react-bootstrap";
+import Chapters from "../component/chapters";
 
-const NewH1 = styled.h1`
-  color: red;
-  font-size: 42px;
-`;
-
-export default class Index extends React.Component {
-  render() {
-    return <NewH1>Hello yc</NewH1>;
-  }
+export default function Index() {
+  return (
+    <>
+      <Chapters />
+    </>
+  );
 }

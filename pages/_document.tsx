@@ -5,11 +5,16 @@ import Document, {
   NextScript,
   DocumentContext
 } from "next/document";
-import { ServerStyleSheet } from "styled-components";
+import styled, { ServerStyleSheet } from "styled-components";
 
 interface Props {
   styleTags: any;
 }
+
+const PaddingBody = styled.body`
+  margin: 10px !important;
+  padding: 10px;
+`;
 
 export default class MyDocument extends Document<Props> {
   static async getInitialProps({ req, renderPage }: DocumentContext) {
@@ -39,6 +44,7 @@ export default class MyDocument extends Document<Props> {
       <html>
         <Head>
           {styleTags}
+          <title>개미는 뚠뚠 오늘도 뚠뚠</title>
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <meta property="og:type" content="article" />
           <meta property="og:locale" content="ko_KR" />
@@ -49,6 +55,12 @@ export default class MyDocument extends Document<Props> {
           <link
             rel="apple-touch-icon-precomposed"
             href="/icons/favicon-152x152.png"
+          />
+          <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossOrigin="anonymous"
           />
           <link rel="icon" href="/icons/favicon-152x152.png" />
           <meta name="msapplication-TileColor" content="#1CC0A6" />
@@ -62,10 +74,10 @@ export default class MyDocument extends Document<Props> {
             }}
           />
         </Head>
-        <body>
+        <PaddingBody>
           <Main />
           <NextScript />
-        </body>
+        </PaddingBody>
       </html>
     );
   }
