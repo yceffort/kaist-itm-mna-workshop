@@ -8,7 +8,9 @@ import styled from "styled-components";
 import fetch from "isomorphic-fetch";
 
 const dev = process.env.NODE_ENV !== "production";
-const host = dev ? "http://localhost:8080" : "production";
+const host = dev
+  ? "http://localhost:8080"
+  : "https://itm-mna-kaist.herokuapp.com/";
 
 const HomeButtonContainer = styled(Row)`
   margin-top: 5px;
