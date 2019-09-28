@@ -5,9 +5,7 @@ import styled from "styled-components";
 import { IChapter } from "../utils/interfaces";
 
 const dev = process.env.NODE_ENV !== "production";
-const host = dev
-  ? "http://localhost:8080"
-  : "https://itm-mna-yceffort.herokuapp.com";
+const host = dev ? "http://localhost:8080" : process.env.WEB_HOST;
 
 const MainContainer = styled.div`
   width: 400px;

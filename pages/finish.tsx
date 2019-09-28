@@ -15,7 +15,7 @@ export default function Finish() {
 
   const goReTest = () => {
     let wrong = JSON.parse(window.sessionStorage.getItem("wrong") || "[]");
-
+    window.sessionStorage.clear();
     window.sessionStorage.setItem("quiz", JSON.stringify(wrong));
     window.location.href = `/quiz/${wrong[0].split("-")[0]}/${
       wrong[0].split("-")[1]

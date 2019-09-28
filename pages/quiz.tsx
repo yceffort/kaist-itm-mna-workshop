@@ -8,9 +8,7 @@ import styled from "styled-components";
 import fetch from "isomorphic-fetch";
 
 const dev = process.env.NODE_ENV !== "production";
-const host = dev
-  ? "http://localhost:8080"
-  : "https://itm-mna-yceffort.herokuapp.com";
+const host = dev ? "http://localhost:8080" : process.env.WEB_HOST;
 
 const HomeButtonContainer = styled(Row)`
   margin-top: 5px;
@@ -25,6 +23,10 @@ function Quiz({
   quiz: any;
   no: number;
 }) {
+  useEffect(() => {
+    if (!window.sessionStorage.getItem("quiz")) window.location.href = "/";
+  });
+
   return (
     <Container>
       <Row>
