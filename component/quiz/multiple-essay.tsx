@@ -50,8 +50,6 @@ export default function MultipleEssay({
       const sortStudentAnswer = studentAnswer.sort(s);
       const sortAnswer = answer!.sort(s);
 
-      console.log(sortStudentAnswer, sortAnswer);
-
       result = arraysIdentical(
         sortStudentAnswer.map((s: string) => removeAllBlank(s)),
         sortAnswer
