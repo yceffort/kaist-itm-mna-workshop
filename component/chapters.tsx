@@ -96,9 +96,8 @@ export default function Chapters() {
       <ListGroup>
         {chapters.map(({ chapter, name, questions }, idx) => {
           return (
-            <ListGroup.Item variant="primary">
+            <ListGroup.Item variant="primary" key={`${chapter}-${idx}`}>
               <Form.Check
-                key={chapter}
                 type="radio"
                 id="chapter"
                 name="chapter"
