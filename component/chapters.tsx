@@ -57,6 +57,9 @@ export default function Chapters() {
   const [random, setRandom] = useState(true);
 
   const fetchChapters = useMemo(async () => {
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    console.log(host);
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     const response = await fetch(`${host}/api/chapters`);
     const result = await response.json();
     setChapters(result);
