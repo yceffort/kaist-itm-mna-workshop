@@ -48,12 +48,6 @@ export default function Answer({
     }
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      goNext();
-    }, 1000 * 2);
-  });
-
   return (
     <>
       <Col xs={12}>
