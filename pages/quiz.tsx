@@ -6,6 +6,7 @@ import MultipleEssay from "../component/quiz/multiple-essay";
 import { NextPageContext } from "next";
 import styled from "styled-components";
 import fetch from "isomorphic-fetch";
+import OneTwo from "../component/quiz/12";
 
 const dev = process.env.NODE_ENV !== "production";
 const host = dev
@@ -45,6 +46,15 @@ function Quiz({
 
       {quiz.answer_type === "OX" && (
         <OX
+          question={quiz.question}
+          chapter={chapter}
+          answer={quiz.answer}
+          no={no}
+        />
+      )}
+
+      {quiz.answer_type === "12" && (
+        <OneTwo
           question={quiz.question}
           chapter={chapter}
           answer={quiz.answer}
