@@ -76,7 +76,10 @@ function Quiz({
           <Button
             block
             variant="outline-danger"
-            onClick={() => (window.location.href = "/")}
+            onClick={() => {
+              confirm("홈으로? 진행 중인 내용이 모두 사라집니다.") &&
+                (window.location.href = "/");
+            }}
           >
             홈으로
           </Button>
