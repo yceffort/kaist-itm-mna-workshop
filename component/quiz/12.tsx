@@ -26,7 +26,7 @@ export default function OneTwo({
     <>
       <Row>
         <Col xs={12}>
-          <h5>
+          <h5 style={{ whiteSpace: "pre-wrap" }}>
             {no}. {question}
           </h5>
         </Col>
