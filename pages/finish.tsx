@@ -61,7 +61,13 @@ export default function Finish() {
         <ListGroup.Item variant="danger">{wrong}개 틀렸습니다.</ListGroup.Item>
       </ListGroup>
       <ButtonToolbar>
-        <Button variant="primary" size="lg" active onClick={goReTest}>
+        <Button
+          variant="primary"
+          size="lg"
+          active
+          onClick={goReTest}
+          disabled={wrong === 0}
+        >
           틀린문제만 다시풀기
         </Button>
         <Button variant="secondary" size="lg" active onClick={goHome}>

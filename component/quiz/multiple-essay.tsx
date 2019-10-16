@@ -54,8 +54,8 @@ export default function MultipleEssay({
     }
 
     result = arraysIdentical(
-      finalStudentAnswer.map((s: string) => removeAllBlank(s)),
-      finalAnswer!.map((s: string) => removeAllBlank(s))
+      finalStudentAnswer.map((str: string) => removeAllBlank(str)),
+      finalAnswer!.map((str: string) => removeAllBlank(str))
     );
     setSubmit(true);
     setResult(result);
