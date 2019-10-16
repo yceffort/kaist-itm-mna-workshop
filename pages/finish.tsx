@@ -1,10 +1,15 @@
 import { useEffect, useState, Fragment } from "react";
 import { ListGroup, ButtonToolbar, Button } from "react-bootstrap";
+import styled from "styled-components";
 
 const dev = process.env.NODE_ENV !== "production";
 const host = dev
   ? "http://localhost:8080"
   : "https://itm-mna-yceffort.herokuapp.com";
+
+const BodyContainer = styled.div`
+  margin: 10px 10px 10px 10px;
+`;
 
 export default function Finish() {
   const [right, setRight] = useState(0);
@@ -54,7 +59,7 @@ export default function Finish() {
   };
 
   return (
-    <>
+    <BodyContainer>
       <ListGroup>
         <ListGroup.Item>결과</ListGroup.Item>
         <ListGroup.Item variant="primary">{right}개 맞았습니다.</ListGroup.Item>
@@ -91,7 +96,7 @@ export default function Finish() {
           );
         }
       )}
-    </>
+    </BodyContainer>
   );
 }
 
