@@ -46,21 +46,17 @@ export default function MultipleEssay({
     }
     let result = false;
 
+    let finalStudentAnswer = studentAnswer;
+    let finalAnswer = answer;
     if (!hasAnswerOrder) {
-      const sortStudentAnswer = studentAnswer.sort(s);
-      const sortAnswer = answer!.sort(s);
-
-      result = arraysIdentical(
-        sortStudentAnswer.map((s: string) => removeAllBlank(s)),
-        sortAnswer
-      );
-    } else {
-      result = arraysIdentical(
-        studentAnswer.map((s: string) => removeAllBlank(s)),
-        answer
-      );
+      finalStudentAnswer = finalStudentAnswer.sort(s);
+      finalAnswer = finalAnswer!.sort(s);
     }
 
+    result = arraysIdentical(
+      finalStudentAnswer.map((s: string) => removeAllBlank(s)),
+      finalAnswer!.map((s: string) => removeAllBlank(s))
+    );
     setSubmit(true);
     setResult(result);
   };
@@ -69,7 +65,7 @@ export default function MultipleEssay({
     <>
       <Row>
         <Col xs={12}>
-          <h5 style={{whiteSpace: "pre-wrap"}}>
+          <h5 style={{ whiteSpace: "pre-wrap" }}>
             {no}. {question}
           </h5>
         </Col>

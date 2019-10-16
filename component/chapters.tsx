@@ -55,7 +55,6 @@ function shuffle(array: Array<any>) {
 export default function Chapters() {
   const emptyChapter: IChapter[] = [];
   const [chapters, setChapters] = useState(emptyChapter);
-  const [chapter, setChapter] = useState(undefined);
   const [random, setRandom] = useState(true);
 
   const fetchChapters = useMemo(async () => {
@@ -65,9 +64,9 @@ export default function Chapters() {
   }, []);
   let qs: string[] = [];
 
-  const go = (c: number | undefined) => {
+  const go = (chapter: number) => {
     if (chapter != -1) {
-      const targetChapter = chapters.find(({ chapter }) => c == chapter);
+      const targetChapter = chapters.find(({ chapter: c }) => c == chapter);
       for (let i = 0; i < targetChapter!.questions; i++) {
         qs.push(`${chapter}-${i + 1}`);
       }
@@ -81,6 +80,7 @@ export default function Chapters() {
 
     if (random) {
       qs = shuffle(qs);
+      window.sessionStorage.setItem("random", "true");
     }
     window.sessionStorage.setItem("quiz", JSON.stringify(qs));
     window.location.href = `/quiz/${qs[0].split("-")[0]}/${
@@ -96,31 +96,25 @@ export default function Chapters() {
   return (
     <MainContainer>
       <ListGroup>
-        {chapters.map(({ chapter, name, questions }, idx) => {
+        {chapters.map(({ chapter, name, questions }) => {
           return (
-            <ListGroup.Item variant="primary" key={`${chapter}-${idx}`}>
-              <Form.Check
-                type="radio"
-                id="chapter"
-                name="chapter"
-                value={chapter}
-                onChange={(e: any) => setChapter(e.target.value)}
-                label={`Chapter ${chapter}. ${name}`}
-              />
-            </ListGroup.Item>
+            <Button
+              id="chapter"
+              name="chapter"
+              onClick={() => go(chapter)}
+              block
+            >{`Chapter ${chapter}. ${name} (${questions}문제)`}</Button>
           );
         })}
-
-        <ListGroup.Item variant="info">
-          <Form.Check
-            type="radio"
-            id="chapter"
-            name="chapter"
-            value={-1}
-            onChange={(e: any) => setChapter(e.target.value)}
-            label="모두"
-          />
-        </ListGroup.Item>
+        <Button
+          id="chapter"
+          name="chapter"
+          onClick={() => go(-1)}
+          block
+          variant="info"
+        >
+          모두
+        </Button>
 
         <ListGroup.Item variant="light">
           <Form.Check
@@ -131,16 +125,6 @@ export default function Chapters() {
           />
         </ListGroup.Item>
       </ListGroup>
-      <ButtonContainer>
-        <Button
-          block
-          disabled={!chapter}
-          variant="outline-primary"
-          onClick={() => go(chapter)}
-        >
-          Let's go
-        </Button>
-      </ButtonContainer>
     </MainContainer>
   );
 }
