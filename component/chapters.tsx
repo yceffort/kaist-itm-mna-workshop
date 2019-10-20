@@ -1,13 +1,13 @@
-import React, { useEffect, useState, Fragment, useMemo } from "react";
-import fetch from "isomorphic-fetch";
-import { Form, Button, ListGroup } from "react-bootstrap";
-import styled from "styled-components";
-import { IChapter } from "../utils/interfaces";
+import React, { useEffect, useState, Fragment, useMemo } from 'react'
+import { NextPageContext } from 'next'
+import { Form, Button, ListGroup } from 'react-bootstrap'
+import styled from 'styled-components'
+import { IChapter } from '../utils/interfaces'
 
-const dev = process.env.NODE_ENV !== "production";
+const dev = process.env.NODE_ENV !== 'production'
 const host = dev
-  ? "http://localhost:8080"
-  : "https://itm-mna-yceffort.herokuapp.com";
+  ? 'http://localhost:8080'
+  : 'https://itm-mna-yceffort.herokuapp.com'
 
 const MainContainer = styled.div`
   width: 400px;
@@ -28,70 +28,60 @@ const MainContainer = styled.div`
   > button {
     text-align: center;
   }
-`;
+`
 
 const ButtonContainer = styled.div`
   margin-top: 10px;
-`;
+`
 
 function shuffle(array: Array<any>) {
   var currentIndex = array.length,
     temporaryValue,
-    randomIndex;
+    randomIndex
 
   while (0 !== currentIndex) {
     // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex -= 1
 
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
+    temporaryValue = array[currentIndex]
+    array[currentIndex] = array[randomIndex]
+    array[randomIndex] = temporaryValue
   }
 
-  return array;
+  return array
 }
 
-export default function Chapters() {
-  const emptyChapter: IChapter[] = [];
-  const [chapters, setChapters] = useState(emptyChapter);
-  const [random, setRandom] = useState(true);
-
-  const fetchChapters = useMemo(async () => {
-    const response = await fetch(`${host}/api/chapters`);
-    const result = await response.json();
-    setChapters(result);
-  }, []);
-  let qs: string[] = [];
+export default function Chapters({ chapters }: { chapters: any[] }) {
+  const emptyChapter: IChapter[] = []
+  const [random, setRandom] = useState(true)
 
   const go = (chapter: number) => {
+    let qs: string[] = []
     if (chapter != -1) {
-      const targetChapter = chapters.find(({ chapter: c }) => c == chapter);
+      const targetChapter = chapters.find(({ chapter: c }) => c == chapter)
       for (let i = 0; i < targetChapter!.questions; i++) {
-        qs.push(`${chapter}-${i + 1}`);
+        qs.push(`${chapter}-${i + 1}`)
       }
     } else if (chapter == -1) {
-      chapters.forEach(chapter => {
+      chapters.forEach((chapter) => {
         for (let i = 0; i < chapter.questions; i++) {
-          qs.push(`${chapter.chapter}-${i + 1}`);
+          qs.push(`${chapter.chapter}-${i + 1}`)
         }
-      });
+      })
     }
 
     if (random) {
-      qs = shuffle(qs);
-      window.sessionStorage.setItem("random", "true");
+      qs = shuffle(qs)
+      window.sessionStorage.setItem('random', 'true')
     }
-    window.sessionStorage.setItem("quiz", JSON.stringify(qs));
-    window.location.href = `/quiz/${qs[0].split("-")[0]}/${
-      qs[0].split("-")[1]
-    }`;
-  };
+    window.sessionStorage.setItem('quiz', JSON.stringify(qs))
+    window.location.href = `/quiz/${qs[0].split('-')[0]}/${qs[0].split('-')[1]}`
+  }
 
   useEffect(() => {
-    fetchChapters;
-    window.sessionStorage.clear();
-  }, []);
+    window.sessionStorage.clear()
+  }, [])
 
   return (
     <MainContainer>
@@ -104,7 +94,7 @@ export default function Chapters() {
               onClick={() => go(chapter)}
               block
             >{`Chapter ${chapter}. ${name} (${questions}문제)`}</Button>
-          );
+          )
         })}
         <Button
           id="chapter"
@@ -126,5 +116,5 @@ export default function Chapters() {
         </ListGroup.Item>
       </ListGroup>
     </MainContainer>
-  );
+  )
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState, Fragment } from 'react'
 import { ListGroup, ButtonToolbar, Button } from 'react-bootstrap'
 import styled from 'styled-components'
+import { NextPageContext } from 'next'
 
 const dev = process.env.NODE_ENV !== 'production'
 const host = dev
@@ -122,13 +123,3 @@ export default function Finish() {
     </BodyContainer>
   )
 }
-
-// Finish.getInitialProps = async function({
-//   query: { chapter, no }
-// }: NextPageCo) {
-//   const response = await fetch(
-//     `${host}/api/chapter${chapter}?limit=100&q=no:=${no}`
-//   );
-//   const quiz = await response.json();
-//   return { chapter, no, quiz: quiz[0] };
-// };
