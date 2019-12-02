@@ -8,7 +8,7 @@ import proxy from "koa-proxies";
 
 const port = parseInt(process.env.PORT || "8080", 10);
 const dev = process.env.NODE_ENV !== "production";
-const jsonbox_id = "box_dca1183468cd353a9e03";
+const jsonbox_id = "box_f9acae906999a95a4034";
 
 async function main() {
   const nextApp = next({ dev });
