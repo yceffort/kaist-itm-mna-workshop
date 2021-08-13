@@ -17,7 +17,7 @@
     "koa-mount": "^4.0.0",
     "koa-proxies": "^0.8.1",
     "koa-router": "^7.4.0",
-    "next": "^9.0.5",
+    "next": "^11.1.0",
     "react": "^16.8.4",
     "react-bootstrap": "^1.0.0-beta.12",
     "react-dom": "^16.8.4",
